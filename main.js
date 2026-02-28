@@ -92,6 +92,13 @@ ipcMain.on('window-close', () => {
     if (mainWindow) mainWindow.close();
 });
 
+// IPC 通信：主题同步
+ipcMain.on('set-theme', (event, theme) => {
+    if (mainWindow) {
+        mainWindow.setVibrancy(theme === 'dark' ? 'dark' : 'light');
+    }
+});
+
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {

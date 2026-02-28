@@ -10,6 +10,7 @@ class TodoApp {
             addInput: document.getElementById('addInput'),
             emptyState: document.getElementById('emptyState'),
             statsText: document.getElementById('statsText'),
+            themeBtn: document.getElementById('themeBtn'),
             pinBtn: document.getElementById('pinBtn'),
             minimizeBtn: document.getElementById('minimizeBtn'),
             closeBtn: document.getElementById('closeBtn')
@@ -28,6 +29,9 @@ class TodoApp {
         // 绑定事件
         this.bindEvents();
 
+        // 初始化主题
+        this.initTheme();
+
         // 默认置顶按钮高亮
         this.elements.pinBtn.classList.add('active');
     }
@@ -39,6 +43,11 @@ class TodoApp {
                 e.preventDefault();
                 this.addTodo();
             }
+        });
+
+        // 切换主题
+        this.elements.themeBtn.addEventListener('click', () => {
+            this.toggleTheme();
         });
 
         // 窗口控制按钮
@@ -54,6 +63,36 @@ class TodoApp {
         this.elements.closeBtn.addEventListener('click', () => {
             window.todoAPI.closeWindow();
         });
+    }
+
+    // 初始化主题
+    initTheme() {
+        const savedTheme = localStorage.getItem('todo-theme') || 'dark';
+        this.applyTheme(savedTheme);
+    }
+
+    // 切换主题
+    toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        this.applyTheme(newTheme);
+        localStorage.setItem('todo-theme', newTheme);
+    }
+
+    // 应用主题
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        window.todoAPI.setTheme(theme);
+
+        const isDark = theme === 'dark';
+        const sunIcon = this.elements.themeBtn.querySelector('.sun-icon');
+        const moonIcon = this.elements.themeBtn.querySelector('.moon-icon');
+
+        if (sunIcon && moonIcon) {
+            // 图标表示“点击后切换到的状态”。所以在暗黑模式展示太阳(点击切日间)；明亮模式展示月亮(点击切夜间)
+            sunIcon.style.display = isDark ? 'block' : 'none';
+            moonIcon.style.display = isDark ? 'none' : 'block';
+        }
     }
 
     // 新增 todo
