@@ -89,10 +89,11 @@ body {
   justify-content: space-between;
   padding: 12px 14px 6px;
   flex-shrink: 0;
+  -webkit-app-region: drag;
+  user-select: none;
 }
 
 .titlebar-drag {
-  -webkit-app-region: drag;
   flex: 1;
   display: flex;
   align-items: center;
