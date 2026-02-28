@@ -1,0 +1,12 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "轻量级 macOS 桌面 TodoList 应用",
+  "main": "main.js",
+  "scripts": {
+    "start": "env -u ELECTRON_RUN_AS_NODE electron ."
+  },
+  "devDependencies": {
+    "electron": "^28.3.3"
+  }
+}

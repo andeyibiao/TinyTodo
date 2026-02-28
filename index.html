@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 自定义标题栏 -->
+  <div class="titlebar" id="titlebar">
+    <div class="titlebar-drag">
+      <span class="titlebar-title">📝 Todo</span>
+    </div>
+    <div class="titlebar-controls">
+      <button class="titlebar-btn pin-btn" id="pinBtn" title="切换置顶">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L12 12"/>
+          <path d="M18.36 6.64A9 9 0 1 1 5.64 6.64"/>
+        </svg>
+      </button>
+      <button class="titlebar-btn minimize-btn" id="minimizeBtn" title="最小化">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </button>
+      <button class="titlebar-btn close-btn" id="closeBtn" title="关闭">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="6" y1="18" x2="18" y2="6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 统计信息 -->
+  <div class="stats" id="stats">
+    <span class="stats-text" id="statsText">0 个待办</span>
+  </div>
+
+  <!-- Todo 列表 -->
+  <div class="todo-list-container" id="todoListContainer">
+    <ul class="todo-list" id="todoList"></ul>
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">✨</div>
+      <div class="empty-text">暂无待办事项</div>
+      <div class="empty-hint">在下方输入框添加新任务</div>
+    </div>
+  </div>
+
+  <!-- 新增输入 -->
+  <div class="add-bar" id="addBar">
+    <div class="add-input-wrapper">
+      <span class="add-icon">+</span>
+      <input
+        type="text"
+        class="add-input"
+        id="addInput"
+        placeholder="添加新的待办事项..."
+        maxlength="100"
+        autocomplete="off"
+      />
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
