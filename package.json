@@ -1,5 +1,5 @@
 {
-  "name": "todolist",
+  "name": "tinytodo",
   "version": "1.0.0",
   "description": "轻量级 macOS 桌面 TodoList 应用",
   "main": "main.js",
@@ -9,8 +9,8 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "com.todolist.mac",
-    "productName": "TodoList",
+    "appId": "com.tinytodo.mac",
+    "productName": "TinyTodo",
     "mac": {
       "category": "public.app-category.productivity",
       "target": [
@@ -20,7 +20,7 @@
       "identity": null
     },
     "dmg": {
-      "title": "TodoList",
+      "title": "TinyTodo",
       "window": {
         "width": 540,
         "height": 380
