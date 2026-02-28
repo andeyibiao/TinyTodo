@@ -21,7 +21,7 @@ TinyTodo 是一款专为 macOS 设计的极简轻量级桌面待办事项应用�
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/your-username/tinytodo.git
+git clone https://github.com/andeyibiao/TinyTodo.git
 cd tinytodo
 ```
 
