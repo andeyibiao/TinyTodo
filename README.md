@@ -6,6 +6,12 @@ TinyTodo 是一款专为 macOS 设计的极简轻量级桌面待办事项应用�
 
 项目拥有深度契合 macOS 审美的人机交互细节：从极致丝滑的 CSS 列表排序动画，到完美融合 macOS 全局配置的底层毛玻璃（Vibrancy）质感材质界面。希望它能成为你桌面上最安静优雅的效率助手。
 
+### 🌗 主题与截图预览
+<p align="center">
+  <img src="./images/theme-1.jpg" alt="Theme 1" width="48%" />
+  <img src="./images/theme-2.jpg" alt="Theme 2" width="48%" />
+</p>
+
 ## ✨ 核心特性
 
 - **极致轻量**：无冗余的 React/Vue 框架负担，由纯粹的 Vanilla JS 极速驱动。
