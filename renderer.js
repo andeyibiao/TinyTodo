@@ -92,11 +92,12 @@ class TodoApp {
         const el = document.querySelector(`[data-id="${id}"]`);
         if (el) {
             el.classList.add('removing');
-            el.addEventListener('animationend', () => {
+            // 避免 animationend 在某些情况下不触发，使用 setTimeout 作为降级方案
+            setTimeout(() => {
                 this.todos = this.todos.filter(t => t.id !== id);
                 this.save();
                 this.render();
-            }, { once: true });
+            }, 260);
         } else {
             this.todos = this.todos.filter(t => t.id !== id);
             this.save();
