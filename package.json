@@ -16,6 +16,7 @@
       "target": [
         "dmg"
       ],
+      "icon": "build/icon.png",
       "identity": null
     },
     "dmg": {
