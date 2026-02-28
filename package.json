@@ -4,9 +4,30 @@
   "description": "轻量级 macOS 桌面 TodoList 应用",
   "main": "main.js",
   "scripts": {
-    "start": "env -u ELECTRON_RUN_AS_NODE electron ."
+    "start": "env -u ELECTRON_RUN_AS_NODE electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.todolist.mac",
+    "productName": "TodoList",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg"
+      ],
+      "identity": null
+    },
+    "dmg": {
+      "title": "TodoList",
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    }
   },
   "devDependencies": {
-    "electron": "^28.3.3"
+    "electron": "^28.3.3",
+    "electron-builder": "^26.8.1"
   }
 }
