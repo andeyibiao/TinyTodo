@@ -39,7 +39,7 @@ class TodoApp {
     bindEvents() {
         // 回车新增
         this.elements.addInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
+            if (e.key === 'Enter' && !e.isComposing) {
                 e.preventDefault();
                 this.addTodo();
             }
