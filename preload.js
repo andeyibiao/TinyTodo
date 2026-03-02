@@ -6,5 +6,7 @@ contextBridge.exposeInMainWorld('todoAPI', {
     toggleAlwaysOnTop: () => ipcRenderer.invoke('toggle-always-on-top'),
     minimizeWindow: () => ipcRenderer.send('window-minimize'),
     closeWindow: () => ipcRenderer.send('window-close'),
-    setTheme: (theme) => ipcRenderer.send('set-theme', theme)
+    setTheme: (theme) => ipcRenderer.send('set-theme', theme),
+    getAutoLaunch: () => ipcRenderer.invoke('get-auto-launch'),
+    toggleAutoLaunch: () => ipcRenderer.invoke('toggle-auto-launch')
 });

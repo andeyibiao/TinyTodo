@@ -12,6 +12,7 @@ class TodoApp {
             statsText: document.getElementById('statsText'),
             themeBtn: document.getElementById('themeBtn'),
             pinBtn: document.getElementById('pinBtn'),
+            autoLaunchBtn: document.getElementById('autoLaunchBtn'),
             minimizeBtn: document.getElementById('minimizeBtn'),
             closeBtn: document.getElementById('closeBtn')
         };
@@ -31,6 +32,9 @@ class TodoApp {
 
         // 初始化主题
         this.initTheme();
+
+        // 初始化开机自启动状态
+        this.initAutoLaunch();
 
         // 默认置顶按钮高亮
         this.elements.pinBtn.classList.add('active');
@@ -56,6 +60,12 @@ class TodoApp {
             this.elements.pinBtn.classList.toggle('active', isOnTop);
         });
 
+        // 开机自启动
+        this.elements.autoLaunchBtn.addEventListener('click', async () => {
+            const isEnabled = await window.todoAPI.toggleAutoLaunch();
+            this.elements.autoLaunchBtn.classList.toggle('active', isEnabled);
+        });
+
         this.elements.minimizeBtn.addEventListener('click', () => {
             window.todoAPI.minimizeWindow();
         });
@@ -63,6 +73,12 @@ class TodoApp {
         this.elements.closeBtn.addEventListener('click', () => {
             window.todoAPI.closeWindow();
         });
+    }
+
+    // 初始化开机自启动状态
+    async initAutoLaunch() {
+        const isEnabled = await window.todoAPI.getAutoLaunch();
+        this.elements.autoLaunchBtn.classList.toggle('active', isEnabled);
     }
 
     // 初始化主题

@@ -99,6 +99,19 @@ ipcMain.on('set-theme', (event, theme) => {
     }
 });
 
+// IPC 通信：开机自启动
+ipcMain.handle('get-auto-launch', () => {
+    const settings = app.getLoginItemSettings();
+    return settings.openAtLogin;
+});
+
+ipcMain.handle('toggle-auto-launch', () => {
+    const settings = app.getLoginItemSettings();
+    const newValue = !settings.openAtLogin;
+    app.setLoginItemSettings({ openAtLogin: newValue });
+    return newValue;
+});
+
 app.whenReady().then(createWindow);
 
 app.on('window-all-closed', () => {
