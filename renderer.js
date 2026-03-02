@@ -242,7 +242,67 @@ class TodoApp {
             this.deleteTodo(todo.id);
         });
 
+        // 双击编辑
+        li.querySelector('.todo-text').addEventListener('dblclick', (e) => {
+            if (todo.completed) return; // 已完成的不允许编辑
+            this.startEdit(li, todo);
+        });
+
         return li;
+    }
+
+    // 进入编辑模式
+    startEdit(li, todo) {
+        if (li.classList.contains('editing')) return;
+        li.classList.add('editing');
+
+        const textSpan = li.querySelector('.todo-text');
+        const originalText = todo.text;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'todo-edit-input';
+        input.value = originalText;
+        input.maxLength = 100;
+
+        textSpan.replaceWith(input);
+        input.focus();
+        input.select();
+
+        const finishEdit = (save) => {
+            if (!li.classList.contains('editing')) return;
+            li.classList.remove('editing');
+
+            const newText = input.value.trim();
+            if (save && newText && newText !== originalText) {
+                todo.text = newText;
+                this.save();
+            }
+
+            const newSpan = document.createElement('span');
+            newSpan.className = 'todo-text';
+            newSpan.textContent = save && newText ? newText : originalText;
+            input.replaceWith(newSpan);
+
+            // 重新绑定双击
+            newSpan.addEventListener('dblclick', () => {
+                if (todo.completed) return;
+                this.startEdit(li, todo);
+            });
+        };
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.isComposing) {
+                e.preventDefault();
+                finishEdit(true);
+            } else if (e.key === 'Escape') {
+                finishEdit(false);
+            }
+        });
+
+        input.addEventListener('blur', () => {
+            finishEdit(true);
+        });
     }
 
     // HTML 转义（防止 XSS）
